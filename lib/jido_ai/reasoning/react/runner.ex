@@ -349,6 +349,7 @@ defmodule Jido.AI.Reasoning.ReAct.Runner do
          {:ok, tools} <- normalize_request_tools(request),
          effective_model <- Map.get(request, :model, config.model),
          llm_opts <- sync_tools_in_llm_opts(config, request.llm_opts, tools),
+         {:ok, llm_opts} <- maybe_transform_tool_definitions(llm_opts, state, config, runtime_context),
          llm_opts <- maybe_put_openai_websocket_session(effective_model, llm_opts) do
       {:ok,
        %{
@@ -439,6 +440,39 @@ defmodule Jido.AI.Reasoning.ReAct.Runner do
     llm_opts
     |> Keyword.delete(:tools)
     |> Keyword.put(:tools, reqllm_tools)
+  end
+
+  defp maybe_transform_tool_definitions(llm_opts, state, config, runtime_context) do
+    module = config.request_transformer
+
+    if function_exported?(module, :transform_tool_definitions, 4) do
+      tools = Keyword.fetch!(llm_opts, :tools)
+
+      case module.transform_tool_definitions(tools, state, config, runtime_context) do
+        {:ok, transformed} when is_list(transformed) ->
+          if valid_tool_definitions?(transformed, tools) do
+            {:ok, Keyword.put(llm_opts, :tools, transformed)}
+          else
+            {:error, {:invalid_tool_definitions_transformer_result, {:ok, transformed}}}
+          end
+
+        {:error, reason} ->
+          {:error, {:tool_definitions_transformer, reason}}
+
+        other ->
+          {:error, {:invalid_tool_definitions_transformer_result, other}}
+      end
+    else
+      {:ok, llm_opts}
+    end
+  rescue
+    e ->
+      {:error, {:tool_definitions_transformer_exception, %{error: Exception.message(e), type: e.__struct__}}}
+  end
+
+  defp valid_tool_definitions?(transformed, tools) do
+    Enum.all?(transformed, &match?(%ReqLLM.Tool{}, &1)) and
+      Enum.sort(Enum.map(transformed, & &1.name)) == Enum.sort(Enum.map(tools, & &1.name))
   end
 
   defp request_turn(%State{} = state, owner, ref, %Config{} = config, messages, llm_opts, model) do
