@@ -9,9 +9,15 @@
   "id": "jido-ai-r7t.1",
   "labels": [],
   "parent": "jido-ai-r7t",
+  "comments": [
+    {
+      "text": "Characterization complete on 17c10b55 (req_llm 1.24.0, llm_db 2026.9.4). Added six focused offline baseline tests in test/jido_ai/backend_compatibility_test.exs: literal pre-backend compressed rt2 checkpoint and fingerprint, compatible restore/incompatible model rejection, generation/object ReqLLM.Response identity and options, native ReqLLM.StreamResponse without eager consumption, unknown string model acceptance/unknown alias rejection, and ordered embedding action result. mix test focused: 6 tests, 0 failures; mix format --check-formatted focused: OK.\n\nMigration inventory (all executable call sites): lib/jido_ai.ex (3 facades); lib/jido_ai/actions/{llm/chat,llm/complete,llm/embed,llm/generate_object,planning/decompose,planning/plan,planning/prioritize,reasoning/analyze,reasoning/explain,reasoning/infer,tool_calling/call_with_tools}.ex; lib/jido_ai/directive/{llm_generate,llm_stream,llm_embed}.ex; lib/jido_ai/output.ex repair; lib/jido_ai/reasoning/chain_of_thought/worker/strategy.ex; lib/jido_ai/reasoning/react/runner.ex; lib/jido_ai/tool_adapter.ex doctext only. Model/option provider calls: lib/jido_ai/model_aliases.ex, lib/jido_ai.ex, reasoning/react/{config,strategy,runner}.ex. ReAct runner also calls StreamResponse.process_stream/usage, websocket provider modules, Streaming.WebSocketSession.close; CoT worker directly consumes .stream, Response.Stream.summarize and StreamResponse.usage. Streaming directive consumes StreamResponse.process_stream. Tool-calling action performs post-tool follow-up. Output repair independently calls generate_object. Explicit option forwarding also occurs in agent.ex, request.ex, plugins, action run_strategy allowlists, directive helpers, strategy builders and CLI adapters.\n\nAllowed shared pure-data helpers outside ReqLLM adapter (to review function by function): ReqLLM.Message/Context/Tool/ToolCall/ContentPart construction; ReqLLM.Response struct/classify/usage/unwrap_object; ReqLLM.StreamChunk and Response.Stream summary; ReqLLM.Schema validation/conversion. Do NOT blanket-allow ReqLLM.Response namespace: decode_response/decode_object can invoke provider/model logic.\n\nDrift versus original research: current HEAD req_llm is ~\u003e1.14 in mix.exs but lock resolved 1.24.0, not older versions; local deps initially stale llm_db 2026.7.5 despite lock 2026.9.4. Refetched only llm_db checkout via mix deps.clean llm_db + mix deps.get. No tracked dependency changes. Alias resolve_model/1 lets unknown binary specs pass unchanged; direct non-string rich alias forms are validated by ReqLLM.model. Existing Token uses signed rt2 payload and Config.fingerprint has no backend identity. Existing tests also use fake map responses; subsequent dispatcher migration must preserve those test seams or adjust carefully. User AGENTS.md and untracked .serena/ are pre-existing and untouched.",
+      "timestamp": "2026-09-25T22:34:28Z"
+    }
+  ],
   "priority": 2,
   "status": "in_progress",
   "title": "Characterize existing LLM integration and compatibility contracts",
   "type": "task",
-  "updated_at": "2026-09-25T22:31:28Z"
+  "updated_at": "2026-09-25T22:34:28Z"
 }
