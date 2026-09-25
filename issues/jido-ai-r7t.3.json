@@ -11,9 +11,15 @@
   "id": "jido-ai-r7t.3",
   "labels": [],
   "parent": "jido-ai-r7t",
+  "comments": [
+    {
+      "text": "Default ReqLLM adapter added with shared response pass-through, model metadata, safe model/provider key discovery helpers, single/batch embedding normalization, portable/native streaming, model-bound run session for OpenAI/OpenAICodex sockets and continuation, owner-monitored resource cleanup. Adapter-level tests: 7/7; combined backend and adapter: 15/15. Existing production call sites remain direct until subsequent migration issues .4-.6. Portable Stream now watches owner death and cancels/closes. Note: session creation in adapter is not yet invoked by ReActRunner; extraction occurs in .6.",
+      "timestamp": "2026-09-25T22:47:18Z"
+    }
+  ],
   "priority": 2,
   "status": "in_progress",
   "title": "Implement default ReqLLM backend adapter",
   "type": "task",
-  "updated_at": "2026-09-25T22:41:47Z"
+  "updated_at": "2026-09-25T22:47:18Z"
 }
