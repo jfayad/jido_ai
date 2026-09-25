@@ -1,0 +1,15 @@
+{
+  "assignee": "",
+  "blocked_by": [],
+  "blocks": [],
+  "created": "2026-09-25T22:23:50Z",
+  "description": "## Scope\nImplement Backends.ReqLLM, with subordinate option/stream/session modules as useful. Encapsulate generate_text, generate_object, embedding normalization, stream creation/consumption and usage reconciliation, ReqLLM.model/provider discovery, LLMDB normalization, provider schemas and generation key discovery.\nReturn original shared Response objects where possible. Adapt single/batch/return_usage embedding variants to Backend.Embedding. Wrap ReqLLM streams in Backend.Stream with native export preserving existing StreamResponse; final response includes available chunk/metadata usage and finish reason before handles are released.\nPreserve keyword/map option behavior and safe existing-atom conversion; strip routing/internal execution keys before ReqLLM calls. Maintain HTTP/provider options and timeout translation. Keep backend model resolution compatible with legacy string acceptance and richer alias validation. ModelInfo/capabilities must permit unknown metadata rather than rejecting existing supported requests.\nProvide opaque run-scoped session support for OpenAI/OpenAICodex WebSocket reuse and continuation translation, preparing extraction from ReActRunner. Resource ownership handles cancel, exceptions and owner death. Bind session reuse and continuation to effective model/deployment identity.\n\n## Acceptance criteria\n- Characterization tests pass against adapter calls.\n- Response fields and underlying ReqLLM error behavior remain compatible.\n- Portable and native stream views use the same underlying request without double consumption.\n- Embeddings preserve ordering and known usage, with no fabricated metrics.\n- Internal backend keys never reach ReqLLM generation options.\n- Provider-specific session behavior is implemented within adapter boundaries.\n\n## Suggested commit\nfeat(backend): implement default reqllm adapter",
+  "id": "jido-ai-r7t.3",
+  "labels": [],
+  "parent": "jido-ai-r7t",
+  "priority": 2,
+  "status": "open",
+  "title": "Implement default ReqLLM backend adapter",
+  "type": "task",
+  "updated_at": "2026-09-25T22:23:50Z"
+}
