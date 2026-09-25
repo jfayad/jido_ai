@@ -1,0 +1,15 @@
+{
+  "assignee": "",
+  "blocked_by": [],
+  "blocks": [],
+  "created": "2026-09-25T22:23:50Z",
+  "description": "## Scope\nWire backend/backend_opts through agent.ex macros/config, request.ex payload construction, relevant signal schemas, plugin configuration/default maps, actions/reasoning/run_strategy.ex allowlists, all strategy configuration builders, directives, child workers and CLI adapters with explicit option forwarding. Preserve field presence during validation/default application rather than letting defaults mask request overrides.\nResolve Ref once at the appropriate request/run boundary and carry it across process boundaries. Support app, agent, standalone runtime, plugin/action and request scopes. Same-module options shallow-merge; switching module resets inherited options. Concurrent runs must not mutate Application env or depend on process-local selection.\nSeparate alias expansion and backend validation across all strategies. Custom/local references cannot flow into ReqLLM.model or LLMDB. Existing atom aliases and default-backend input forms remain compatible; custom native atoms may be alias values/explicit references. Per-turn model transformer behavior uses the fixed selected backend.\nMigrate reasoning/chain_of_thought/worker/strategy.ex: it currently starts streaming, directly reduces stream_response.stream, summarizes chunks and retrieves StreamResponse.usage. Replace with portable stream consumption while preserving sequence numbers, content/reasoning, usage, terminal events and cancellation.\n\n## Acceptance criteria\n- Tests exercise application defaults, agent overrides, plugin/action defaults and request overrides end to end.\n- Every strategy/child worker sees selected backend and effective model.\n- Two simultaneous runs using different backends remain isolated.\n- Model alias/local reference tests run without ReqLLM model APIs.\n- CoT worker consumes custom stream and preserves events/result/usage behavior.\n\n## Suggested commit\nfeat(runtime): propagate backend configuration across strategies",
+  "id": "jido-ai-r7t.5",
+  "labels": [],
+  "parent": "jido-ai-r7t",
+  "priority": 2,
+  "status": "open",
+  "title": "Propagate backend configuration through requests, plugins and strategies",
+  "type": "task",
+  "updated_at": "2026-09-25T22:23:50Z"
+}
