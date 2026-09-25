@@ -1,6 +1,8 @@
 {
   "assignee": "",
-  "blocked_by": [],
+  "blocked_by": [
+    "jido-ai-r7t.3"
+  ],
   "blocks": [],
   "created": "2026-09-25T22:23:50Z",
   "description": "## Scope\nMigrate lib/jido_ai.ex generate_text/2, generate_object/3, stream_text/2 and model helpers; actions/{llm,planning,reasoning,tool_calling}/ and helpers.ex; directive/{llm_generate,llm_stream,llm_embed,helpers}.ex. Add backend-aware options while preserving existing arities and return/error behavior.\nKeep native ReqLLM.StreamResponse from default stream_text/2; add stream_format: :backend returning portable Stream for every backend. Generic facade unwraps adapter-native export without calling ReqLLM itself; all internal consumers keep portable handles. Strip stream-format/routing options before execution.\nAdd backend fields to action/directive schemas and context defaults. Carry Ref explicitly into async tasks. Tool-calling actions must retain backend/options through EVERY post-tool generation. Translate normalized embeddings into existing action/directive shapes; maintain usage/signal contracts. Shared pure Response/Message/Tool/Schema helpers remain allowed.\nModel labels and fingerprints must use the selected backend rather than ReqLLM globally. Provider-specific option discovery resides only in adapter; public compatibility helpers delegate.\n\n## Acceptance criteria\n- Default facade/action/directive characterization suites remain green.\n- Custom-backend tests cover text/object/embedding, streaming and multi-round tools.\n- Async directives receive exact backend selection and options.\n- Default native stream return and explicit portable mode both work.\n- New boundary errors use existing sanitization/envelope conventions.\n\n## Suggested commit\nrefactor(ai): route facades actions and directives through backends",
