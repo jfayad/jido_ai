@@ -11,9 +11,15 @@
   "id": "jido-ai-r7t.2",
   "labels": [],
   "parent": "jido-ai-r7t",
+  "comments": [
+    {
+      "text": "Implemented Backend/Ref/ModelInfo/Stream/Embedding, standalone alias lookup and deterministic local/embedding-only/invalid backend contract tests. Shared ReqLLM.Response documented explicitly as backend-neutral. Stream requires backend-managed owner-death cleanup (adapter work in .3/.6). Focused tests: 13/13 passing; compile --warnings-as-errors and targeted format checks pass. New modules are not yet wired to facades/runtime; that is staged in .3-.6.",
+      "timestamp": "2026-09-25T22:41:36Z"
+    }
+  ],
   "priority": 2,
   "status": "in_progress",
   "title": "Add backend behavior, dispatch and portable contracts",
   "type": "task",
-  "updated_at": "2026-09-25T22:34:50Z"
+  "updated_at": "2026-09-25T22:41:36Z"
 }
