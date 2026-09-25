@@ -11,9 +11,15 @@
   "id": "jido-ai-r7t.4",
   "labels": [],
   "parent": "jido-ai-r7t",
+  "comments": [
+    {
+      "text": "Facades generate_text/generate_object/stream_text, model helpers, actions (LLM/planning/reasoning/tool calling), and async generation/stream/embedding directives now dispatch through selected backend. Default facade stream retains native ReqLLM.StreamResponse; stream_format: :backend portable; custom backend tested through facades/actions/directives and multi-round tool followups. ReqLLM adapter normalizes map-shaped legacy test fixtures into shared ReqLLM.Response rather than weakening the custom backend result contract. Full stable suite: 31 doctests + 2502 tests, zero failures (1 excluded); changed files format checked, warnings-as-errors compile passes. Selection propagation from agent/request/plugin/other strategies and ReAct remains in .5/.6. User AGENTS.md and .serena/ untouched.",
+      "timestamp": "2026-09-25T23:44:47Z"
+    }
+  ],
   "priority": 2,
   "status": "in_progress",
   "title": "Route facades, actions and directives through backend dispatch",
   "type": "task",
-  "updated_at": "2026-09-25T22:47:29Z"
+  "updated_at": "2026-09-25T23:44:47Z"
 }
