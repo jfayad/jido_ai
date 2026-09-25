@@ -1,7 +1,9 @@
 {
   "assignee": "",
   "blocked_by": [],
-  "blocks": [],
+  "blocks": [
+    "jido-ai-r7t.2"
+  ],
   "created": "2026-09-25T22:23:50Z",
   "description": "## Purpose\nEstablish the pre-refactor compatibility baseline before changing execution paths. Reconcile this plan with current HEAD and preserve unrelated working-tree changes.\n\n## Scope\nInspect and characterize lib/jido_ai.ex facades, model_aliases.ex, action/directive consumers, reasoning/react/{config,strategy,runner,token}.ex, output.ex and reasoning/chain_of_thought/worker/strategy.ex. Capture exact generation response passthrough, native stream_text/2 return, object generation, aliases and rich model inputs, keyword/string-keyed option maps, HTTP/provider forwarding, single/batch embeddings, existing errors/signals, WebSocket reuse and response continuation. Include current scripted Jido.AI.Test behavior.\nCreate independent pre-change checkpoint fixtures (not tokens generated only by new code). Audit all direct/aliased/dynamic ReqLLM calls and backend-relevant schema/option allowlists, including child workers and repair/tool followups. Record drift from the original research in this issue before changing contracts.\n\n## Acceptance criteria\n- Focused baseline tests cover default return shapes and options without live provider calls.\n- Checkpoint fixtures exercise existing token/fingerprint/response-ID behavior.\n- Complete migration inventory distinguishes allowed shared data helpers from executable provider integration.\n- Existing unknown-capability/string-model behavior is recorded so eager validation cannot accidentally break it.\n\n## Suggested commit\n test(backend): characterize existing llm integration contracts",
   "id": "jido-ai-r7t.1",
