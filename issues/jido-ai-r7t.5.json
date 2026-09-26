@@ -11,9 +11,15 @@
   "id": "jido-ai-r7t.5",
   "labels": [],
   "parent": "jido-ai-r7t",
+  "comments": [
+    {
+      "text": "Propagated backend/backend_opts through Request payload, Jido.AI.Agent + strategy-agent macros, plugin state/schema, RunStrategy scopes (app/plugin/runtime/request precedence), CLI adapters, CoT and other strategy config/directives. CoT worker consumes portable Stream and carries response usage; two custom backend concurrent CoT runs tested. ReAct Config now resolves/fingerprints custom model without ReqLLM, default legacy fingerprint fixture still passes; ReAct Strategy stores backend_ref, but ReActRunner execution and request-time transformer selection remain .6. Full stable suite: 31 doctests + 2507 tests, zero failures (1 excluded); focused application default/plugin/alias/concurrency tests pass; format and warnings-as-errors compile checked. One transient unrelated ReAct timing test failure was rerun successfully and did not recur in full suite.",
+      "timestamp": "2026-09-26T00:10:26Z"
+    }
+  ],
   "priority": 2,
   "status": "in_progress",
   "title": "Propagate backend configuration through requests, plugins and strategies",
   "type": "task",
-  "updated_at": "2026-09-25T23:44:59Z"
+  "updated_at": "2026-09-26T00:10:26Z"
 }
