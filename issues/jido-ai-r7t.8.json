@@ -9,9 +9,15 @@
   "id": "jido-ai-r7t.8",
   "labels": [],
   "parent": "jido-ai-r7t",
+  "comments": [
+    {
+      "text": "Committed a7568884. New guides/developer/backends.md documents ReqLLM.Response as shared data (not execution), required/optional callbacks, selection/opts precedence, portable/native streams, lifecycle, continuation/checkpoints, tool repair, errors and Nx/Serving adapter guidance. Updated README, usage-rules, user/developer guides, ExDoc grouping and API/directive docs. Deterministic guide example evaluated successfully via mix run; mix docs PASS; mix precommit PASS (Doctor 210/210, smoke 5/5); mix test PASS (31 doctests, 2522 tests, 0 failures). Credo remains a nonzero quality result from .7: pre-existing agent.ex warning and existing refactoring/readability findings. AGENTS.md, .serena/ and CHANGELOG.md untouched.",
+      "timestamp": "2026-09-26T00:55:14Z"
+    }
+  ],
   "priority": 2,
   "status": "in_progress",
   "title": "Document backend authorship, configuration and compatibility",
   "type": "task",
-  "updated_at": "2026-09-26T00:49:44Z"
+  "updated_at": "2026-09-26T00:55:14Z"
 }
