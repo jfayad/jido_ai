@@ -11,9 +11,15 @@
   "id": "jido-ai-r7t.6",
   "labels": [],
   "parent": "jido-ai-r7t",
+  "comments": [
+    {
+      "text": "Committed aaaa213c. ReAct standalone and agent custom backend stream, tool loop, model override and repair work; no direct ReqLLM execution/model lookup outside adapter remains. Backend session handles and provider-specific WebSocket/previous_response_id logic live in ReqLLM adapter; runner uses opaque session and portable Stream, with per-effective-model continuation identity persisted in checkpoint state. New tokens encode backend deployment identity with credential/live-handle scrubbing; legacy ReqLLM fixtures remain compatible and custom backends reject legacy tokens. Added tests for same/different model continuation, agent tool loop and repair, stream blocked cancellation, credential rotation and unsupported object error. Full mix test: 31 doctests, 2518 tests, zero failures (1 excluded); compile warnings-as-errors, focused format check and git diff --check pass. Pre-existing AGENTS.md and .serena/ changes untouched.",
+      "timestamp": "2026-09-26T00:40:02Z"
+    }
+  ],
   "priority": 2,
   "status": "in_progress",
   "title": "Isolate ReAct backend sessions, streams, continuation and repair",
   "type": "task",
-  "updated_at": "2026-09-26T00:10:49Z"
+  "updated_at": "2026-09-26T00:40:02Z"
 }
