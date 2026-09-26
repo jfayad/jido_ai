@@ -10,11 +10,15 @@
     {
       "text": "## Created implementation tasks\n1. jido-ai-r7t.1 — Characterize existing LLM integration and compatibility contracts\n2. jido-ai-r7t.2 — Add backend behavior, dispatch and portable contracts\n3. jido-ai-r7t.3 — Implement default ReqLLM backend adapter\n4. jido-ai-r7t.4 — Route facades, actions and directives through backend dispatch\n5. jido-ai-r7t.5 — Propagate backend configuration through requests, plugins and strategies\n6. jido-ai-r7t.6 — Isolate ReAct backend sessions, streams, continuation and repair\n7. jido-ai-r7t.7 — Verify backend isolation, compatibility and runtime lifecycle\n8. jido-ai-r7t.8 — Document backend authorship, configuration and compatibility\n\n```mermaid\ngraph LR\n  jido-ai-r7t.1 --\u003e jido-ai-r7t.2\n  jido-ai-r7t.2 --\u003e jido-ai-r7t.3\n  jido-ai-r7t.3 --\u003e jido-ai-r7t.4\n  jido-ai-r7t.4 --\u003e jido-ai-r7t.5\n  jido-ai-r7t.5 --\u003e jido-ai-r7t.6\n  jido-ai-r7t.6 --\u003e jido-ai-r7t.7\n  jido-ai-r7t.7 --\u003e jido-ai-r7t.8\n```\n\nAll issues remain open. Priorities are P2. Dependencies encode the approved staged implementation order; no implementation has been started by recording this plan.",
       "timestamp": "2026-09-25T22:23:50Z"
+    },
+    {
+      "text": "Implementation tasks .1-.8 are committed and closed on jido-ai-r7t/pluggable-backends (latest a7568884). Deterministic custom backend model resolution/stream/tool loop/repair and concurrent isolation are covered; default behavior, checkpoint fixtures and architectural boundary tests pass. Final gates: mix precommit PASS (Doctor 210/210, smoke 5/5), mix test PASS (31 doctests, 2522 tests, 0 failures, 1 excluded), mix dialyzer PASS (existing ignored diagnostics only), mix docs PASS, backend guide example evaluated successfully. mix credo EXIT 28: pre-existing lib/jido_ai/agent.ex:288 warning plus 88 refactoring opportunities and 2 readability issues; this gate is not green. Epic stays open rather than claiming definition of done until Credo baseline is resolved or an explicit acceptance decision is made. No CHANGELOG.md edit; pre-existing AGENTS.md/.serena changes untouched.",
+      "timestamp": "2026-09-26T00:55:27Z"
     }
   ],
   "priority": 2,
   "status": "open",
   "title": "Pluggable LLM backends with zero-configuration ReqLLM compatibility",
   "type": "epic",
-  "updated_at": "2026-09-25T22:23:50Z"
+  "updated_at": "2026-09-26T00:55:27Z"
 }
