@@ -6,6 +6,7 @@
   "blocks": [
     "jido-ai-r7t.8"
   ],
+  "closed_at": "2026-09-26T00:49:31Z",
   "created": "2026-09-25T22:23:50Z",
   "description": "## Scope\nComplete end-to-end matrix using deterministic fake and limited-capability backends: facade/action/plugin/directive/agent ReAct/standalone ReAct/other strategies and child workers/tool followups/repair. Cover selection precedence, option leakage, concurrent isolation, local model references, transformed model options, unsupported operations and malformed callback results.\nExercise stream content/reasoning/tool-fragment/content-part fidelity, final usage/finish reasons, incomplete responses, mid-stream errors, cancellation while blocked, early halt, callback exceptions and owner death. Assert session cleanup and backend/model binding. Preserve Jido.AI.Test scripted APIs. Verify old and new checkpoint cases with independent fixtures and secret/live-resource exclusions.\nAdd AST-aware architectural enforcement over production lib: executable ReqLLM generation/embedding/stream/model/provider/session/options integration is allowed only in Backends.ReqLLM and its owned submodules. Resolve aliases and review dynamic apply/module patterns. Maintain narrow function-level allowance for shared pure data helpers: a ReqLLM.Response namespace allowance must NOT permit provider-decoding helpers that resolve models/providers. Pair static checks with runtime tests forbidding ReqLLM execution/model calls on custom backend paths.\nAdd backend identity to relevant telemetry without event-name/result-shape changes or secret disclosure; labels use selected backend metadata. New boundary errors follow existing Error conventions, preserving adapter errors and action sanitization.\n\n## Acceptance criteria\n- Full matrix proves no default backend leakage, including hidden repair and followup calls.\n- Boundary test fails on an intentionally introduced unauthorized call.\n- Existing default regression suites pass with exact documented public contracts.\n- Final validation: mix precommit, full stable mix test, Credo, Dialyzer; record commands/results and remaining blockers in issue comments.\n- Tests do not require network/API keys/Nx model downloads.\n\n## Suggested commit\ntest(backend): enforce isolation and checkpoint compatibility",
   "id": "jido-ai-r7t.7",
@@ -18,8 +19,8 @@
     }
   ],
   "priority": 2,
-  "status": "in_progress",
+  "status": "closed",
   "title": "Verify backend isolation, compatibility and runtime lifecycle",
   "type": "task",
-  "updated_at": "2026-09-26T00:49:27Z"
+  "updated_at": "2026-09-26T00:49:31Z"
 }
