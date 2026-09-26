@@ -11,9 +11,15 @@
   "id": "jido-ai-r7t.7",
   "labels": [],
   "parent": "jido-ai-r7t",
+  "comments": [
+    {
+      "text": "Committed 6db4b448. Added AST-aware production boundary test covering direct/aliased/dynamic apply ReqLLM model/provider/generation/stream calls (with negative fixture), plus Mimic runtime prohibition on custom ReAct calls. Verified custom standalone/agent tool loops and repair, transformer model-switch continuation, safe checkpoint identity, run session close on completion and early halt, telemetry backend identity and shared labels; retained legacy ReqLLM stream fixtures. Added docs to backend surface so Doctor passes. Validation: mix precommit PASS (Doctor 210 modules, 0 failed; smoke 5/5); mix test PASS (31 doctests, 2522 tests, 0 failures, 1 excluded); mix dialyzer PASS (3 errors are ignored by existing ignore-warnings, no emitted warnings); mix credo EXIT 28, reporting pre-existing agent.ex:288 warning plus 88 refactoring opportunities and 2 readability issues in existing code. No API keys/network required. Pre-existing AGENTS.md/.serena untouched.",
+      "timestamp": "2026-09-26T00:49:27Z"
+    }
+  ],
   "priority": 2,
   "status": "in_progress",
   "title": "Verify backend isolation, compatibility and runtime lifecycle",
   "type": "task",
-  "updated_at": "2026-09-26T00:40:22Z"
+  "updated_at": "2026-09-26T00:49:27Z"
 }
